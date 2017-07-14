@@ -1,8 +1,11 @@
 -- id, pw, ssn, name, regdate;
 SELECT * FROM Member;
+SELECT * FROM Member WHERE name = '이주연';
+
+SELECT COUNT(*) AS count FROM Member;
 
 INSERT INTO Member(id, pw, ssn, name, regdate)
-VALUES('hong', '1', '800101-123456', '홍길동', SYSDATE);
+VALUES('hon', '1', '800101-123456', '홍길똥', SYSDATE);
 
 INSERT INTO Member(id, pw, ssn, name, regdate)
 VALUES('bomb', '1', '170514-123456', '이밤이', SYSDATE);

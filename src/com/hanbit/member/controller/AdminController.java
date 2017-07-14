@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 import com.hanbit.member.domain.MemberBean;
 import com.hanbit.member.service.AdminService;
 import com.hanbit.member.serviceImpl.AdminServiceImpl;
-import com.hanbit.member.constants.Butt;;
+import com.hanbit.member.constants.Butt;
 
 public class AdminController {
 
@@ -19,14 +19,13 @@ public class AdminController {
 			switch((Butt)JOptionPane.showInputDialog(null, "MEMBER ADMIN", "SELEC MENU", JOptionPane.QUESTION_MESSAGE, null, buttons, buttons[1])){
 			case EXIT: return;
 			case ADD:
-				member=new MemberBean();	//값을 바로 전달해주는 것.
-				String[] arr=(JOptionPane.showInputDialog("Name / ID / PASS / SSN ")).split("/");
-				member.setName(arr[0]);
-				member.setId(arr[1]);
-				member.setPw(arr[2]);
-				member.setSsn(arr[3]);
-				service.addMember(member);
-				JOptionPane.showMessageDialog(null, "Sucess Join");
+				member=new MemberBean();	
+				String[] arr=(JOptionPane.showInputDialog("id / pw / ssn / name ")).split("/");
+				member.setId(arr[0]);
+				member.setPw(arr[1]);
+				member.setSsn(arr[2]);
+				member.setName(arr[3]);
+				JOptionPane.showMessageDialog(null, service.addMember(member));
 				break flag;
 			case COUNT:
 				JOptionPane.showMessageDialog(null, "count :"+ service.countMembers());

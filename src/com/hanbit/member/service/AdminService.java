@@ -8,12 +8,12 @@ import com.hanbit.member.domain.MemberBean;
 //지금은 목록을 가져오는 기능을 설정하는 것이다.
 
 public interface AdminService {
-	public void addMember(MemberBean member);			
+	public String addMember(MemberBean member);			
 	public List<MemberBean> list();					
 	public int countMembers();							
 	public MemberBean findById(String id);	
 	public List<MemberBean> findByName(String name); 
-	public void modify(MemberBean bean);
-	public void remove(String id);		
+	public String modify(MemberBean bean);
+	public String remove(String id);		
 	
 }

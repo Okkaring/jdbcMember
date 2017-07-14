@@ -57,8 +57,11 @@ public class MemberBean {
 			this.name = name;
 		}
 
-
-		public String toString() { 
-			return "회원: "+"/"+"이름 : "+name+"/"+"아이디: "+id+"/"+"패스워드: "+pw+"/"+"주민번호 : "+ssn+"/"+ "regdate : "+regdate;
+		@Override
+		public String toString() {
+			return String.format("MemberBean [id= %s / pw= %s / ssn= %s / name= %s / regdate= %s ] \n",id, pw, ssn, name, regdate );
 		}
+
+
+	
 }

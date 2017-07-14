@@ -17,20 +17,27 @@ public class AdminServiceImpl implements AdminService{
 		list = new ArrayList<>();
 	}
 	@Override
-	public void addMember(MemberBean member) {
-		list.add(member);
+	public String addMember(MemberBean member) {
+		MemberDAO dao = new MemberDAOImpl();
+		/*int rs = dao.insert(member);
+		if(rs==1){
+			msg = "등록 성공!!";
+		}else{
+			msg = "등록 실패!!";
+		*/
+		return (dao.insert(member)==1)? "등록 성공!!": "등록 실패!!";
 	}
 	
 	@Override
 	public List<MemberBean> list() {
-		return list;
+		return new MemberDAOImpl().selectAll();
 	}
 	
 	@Override
 	public int countMembers() {
-		return list.size();
+		return new MemberDAOImpl().countMembers();
 	}
-
+	
 	@Override
 	public MemberBean findById(String id) {
 		MemberBean member = new MemberBean();
@@ -41,29 +48,13 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<MemberBean> findByName(String name) {
-		List<MemberBean> members = new ArrayList<>();
-		int count=0;
-		for(MemberBean m: list){
-			if(name.equals(m.getName())){
-				count++;
-			}
-		}
-		
-		for(MemberBean m:list){
-			if(name.equals(m.getName())){
-				members.add(m);
-				if(count==members.size()){
-					break;
-				}
-			}
-		}
-		return members;
+		return new MemberDAOImpl().selectByName(name);
 	}
 
 	@Override
-	public void modify(MemberBean bean) {
+	public String modify(MemberBean bean) {
 	//	findById(bean.getId()).setPw(bean.getPw());
-		
+		String msg = null;
 		for(MemberBean m: list){
 			if(bean.getId().equals(m.getId())){
 				
@@ -78,14 +69,17 @@ public class AdminServiceImpl implements AdminService{
 					}
 			}
 		}
+		return msg;
 	}
 
 	@Override
-	public void remove(String id) {
+	public String remove(String id) {
+		String msg = null;
 		for(MemberBean m: list){
 			if(id.equals(m.getId())){
 			list.remove(m);
 			}
 		}
+		return msg;
 	}
 }
